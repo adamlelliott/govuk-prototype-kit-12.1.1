@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Talking Stick Details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Please specify the details for the Talking Stick Application</h1>
+
+      <form class="form" action="/check-answers" method="post">
+
+        {{ govukTextarea({
+          name: "talking-stick-explanation",
+          id: "talking-stick-explanation",
+          label: {
+            text: "Explain common scenarios and / or situations in which a talking stick is required",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          value: data['talking-stick-explanation']
+        }) }}
+
+        {% from "govuk/components/button/macro.njk" import govukButton %}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue",
+            type: "Submit"
+          }) }}
+  
+          <a class="govuk-link" href="/start">Cancel</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "layout_unbranded.html" %}
+{% block pageTitle %}
+Register an Account
+{% endblock %}
+
+{% block content %}
+
+<form class="form" action="/adduser" method="post">
+
+{% if errormessage %}
+<div class="govuk-error-message">{{ errormessage }}</div>
+{% endif %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+    {{ govukInput({
+    label: {
+    text: "Username",
+    classes: "govuk-label--l",
+    isPageHeading: true
+    },
+    id: "username",
+    name: "username",
+    value: data["username"]
+    }) }}
+
+    {{ govukInput({
+    label: {
+    text: "Password",
+    classes: "govuk-label--l",
+    isPageHeading: true
+    },
+    id: "password",
+    type: "password",
+    name: "password",
+    value: data["password"]
+    }) }}
+
+    {% from "govuk/components/button/macro.njk" import govukButton %}
+
+    <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Register",
+        type: "Submit"
+        }) }}
+
+        <a class="govuk-link" href="#">Cancel</a>
+    </div>
+
+</form>
+
+{% endblock %}

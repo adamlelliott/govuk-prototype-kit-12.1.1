@@ -1,0 +1,80 @@
+{% extends "layout_unbranded.html" %}
+{% block pageTitle %}
+Add new City
+{% endblock %}
+
+{% block content %}
+
+<form class="form" action="/addcity" method="post">
+
+{% if errormessage %}
+<div class="govuk-error-message">{{ errormessage }}</div>
+{% endif %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+    {{ govukInput({
+    label: {
+    text: "What is the name of the city?",
+    classes: "govuk-label--l",
+    isPageHeading: true
+    },
+    id: "name",
+    name: "name",
+    value: data["name"]
+    }) }}
+
+    {{ govukInput({
+    label: {
+    text: "What is the city's country code??",
+    classes: "govuk-label--l",
+    isPageHeading: true
+    },
+    id: "countrycode",
+    name: "countrycode",
+    value: data["countrycode"]
+    }) }}
+
+    {{ govukInput({
+    label: {
+    text: "What is the city's district?",
+    classes: "govuk-label--l",
+    isPageHeading: true
+    },
+    id: "district",
+    name: "district",
+    value: data["district"]
+    }) }}
+
+    {{ govukInput({
+    label: {
+    text: "What is the city's population??",
+    classes: "govuk-label--l",
+    isPageHeading: true
+    },
+    classes: "govuk-input--width-10",
+    hint: {
+    text: "Please enter the value in digits between 0 and 9."
+    },
+    id: "population",
+    name: "population",
+    inputmode: "numeric",
+    pattern: "[0-9]*",
+    spellcheck: false,
+    value: data["population"]
+    }) }}
+
+    {% from "govuk/components/button/macro.njk" import govukButton %}
+
+    <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Add City",
+        type: "Submit"
+        }) }}
+
+        <a class="govuk-link" href="#">Cancel</a>
+    </div>
+
+</form>
+
+{% endblock %}

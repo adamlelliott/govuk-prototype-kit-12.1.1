@@ -1,0 +1,25 @@
+{% extends "layout_unbranded.html" %}
+{% block pageTitle %}
+List of Users
+{% endblock %}
+
+{% block content %}
+
+{% if currentUser %}
+<p>Logged in as: {{ currentUser.username }}</p>
+{% endif %}
+
+{% if users and users.length > 0 %}
+{% set userrows = [] %}
+{% for user in users %}
+{% set userrows = (userrows.push([{ text: user.id }, { text: user.username }, { text: user.password }]), userrows) %}
+{% endfor %}
+{{govukTable({
+head: [ { text: "ID" },{ text: "Name" },{ text: "Password" } ],
+rows: userrows })
+}}
+{% else %}
+There are no users.
+{% endif %}
+
+{% endblock %}

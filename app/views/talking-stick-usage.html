@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Talking Stick Type – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Talking Stick Type</h1>
+
+      <form class="form" action="/talking-stick-usage-answer" method="post">
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+      {{ govukRadios({
+        idPrefix: "talking-stick-type",
+        name: "talking-stick-type",
+        fieldset: {
+          legend: {
+            text: "Is your talking stick for a Discord Server or Physical Meeting?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Discord Server",
+            text: "Discord Server",
+            checked: checked("talking-stick-type", "Discord Server")
+          },
+          {
+            value: "Physical Meeting Space",
+            text: "Physical Meeting Space",
+            checked: checked("talking-stick-type", "Physical Meeting Space")
+          }
+        ]
+      }) }}
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          type: "Submit"
+        }) }}
+
+        <a class="govuk-link" href="/start">Cancel</a>
+      </div>
+      
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
